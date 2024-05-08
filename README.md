@@ -10,6 +10,7 @@
   * uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
     
   **Take permission depend on version sdk,Reason: have version dependency**
+  
    if (Platform.isAndroid &&  deviceSdkVersion > 29) {
       status=await Permission.manageExternalStorage.request();
     } else {
