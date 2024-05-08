@@ -16,6 +16,7 @@
     } else {
      status= await Permission.storage.request();
   ```
+  ** Analysis permanently_store_externalStorage.dart**
     
 
 #### Note
