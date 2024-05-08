@@ -6,6 +6,14 @@
 
 ### Set Up
   **Initialize permission handler - AndroidMainfest.xml**
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  **Take permission depend on version sdk,Reason: have version dependency**
+   if (Platform.isAndroid &&  deviceSdkVersion > 29) {
+      status=await Permission.manageExternalStorage.request();
+    } else {
+     status= await Permission.storage.request();
+    }
 
 #### Note
 ~~Android don't allow store permanently in android/data~~
