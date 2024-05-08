@@ -11,11 +11,11 @@
     
   **Take permission depend on version sdk,Reason: have version dependency**
   
-   if (Platform.isAndroid &&  deviceSdkVersion > 29) {
+   Markup : if (Platform.isAndroid &&  deviceSdkVersion > 29) {
       status=await Permission.manageExternalStorage.request();
     } else {
      status= await Permission.storage.request();
-    }
+    
 
 #### Note
 ~~Android don't allow store permanently in android/data~~
