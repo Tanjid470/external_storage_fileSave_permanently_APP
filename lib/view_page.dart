@@ -18,8 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  String current="permanentlySave7.txt";
-  String previous="permanentlySave6.txt";
+  String current="log_sos_reIN_ex_devi.txt";
+  String previous="permanentlySave7.txt";
   List<String> inputList =
   [
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3NzU2MzE3LCJpYXQiOjE3MTQ3OTYzMTcsImp0aSI6IjQ1ODViZTdjYmViMDQzYThiNGIyZGMxZTljMGI2YzRlIiwidXNlcl9pZCI6NzU0NzF9.Gfajf7kPZa4LyaEMzuIs27YCAQeGsz9qOU5FEFbIqc8",
@@ -63,12 +63,14 @@ class _HomePageState extends State<HomePage> {
             var readText= await FileStorage.readExternalTextFile(current);
             String decryptedText = FileStorage.makeSecureString(readText, -3);
             List<String> outputList=FileStorage.separateStringIntoList(decryptedText);
-            log('${outputList[0]}-----------Read---------->DecryptedText');
+            log('${outputList[1]}-----------Read---------->DecryptedText');
           }, buttonType: 'Read Current',),
 
           KButton( onTap: () async{
-            var check= await FileStorage.readExternalTextFile(previous);
-            log('$check----------------');
+            var readText= await FileStorage.readExternalTextFile(previous);
+            String decryptedText = FileStorage.makeSecureString(readText, -3);
+            List<String> outputList=FileStorage.separateStringIntoList(decryptedText);
+            log('$outputList-----------ReadPrevious---------->DecryptedText');
           }, buttonType: 'Read Previous',),
 
 
