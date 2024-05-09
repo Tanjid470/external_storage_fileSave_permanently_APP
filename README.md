@@ -1,16 +1,23 @@
-# flutter_internal_store
+# Flutter_internal_store
 
-A new Flutter project.
+### This project based on how to store file/image in device external folder.
+ * Permanently locate sothat whenever app uninstalled that file will will be save in . Re- install file can read
+ * File ca save Andriod/data . It's temporary .THe file will deleted with app uninstalled
 
-## Getting Started
+### Set Up
+  **Initialize permission handler - AndroidMainfest.xml**
+  * uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+  * uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    
+  **Take permission depend on version sdk,Reason: have version dependency**
+  ```
+   if (Platform.isAndroid &&  deviceSdkVersion > 29) {
+      status=await Permission.manageExternalStorage.request();
+    } else {
+     status= await Permission.storage.request();
+  ```
+  **Analysis permanently_store_externalStorage.dart**
+    
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Note
+~~Android don't allow store permanently in android/data~~
