@@ -1,8 +1,19 @@
 # Flutter_internal_store
 
 ### This project based on how to store file/image in device external folder.
- * Permanently locate sothat whenever app uninstalled that file will will be save in . Re- install file can read
- * File ca save Andriod/data . It's temporary .THe file will deleted with app uninstalled
+ * Permanently locate so that whenever the app is uninstalled that file will be saved. In Re - install previous save file can read
+ * File ca save Andriod/data . It's temporary. The file will deleted with the app uninstalled
+
+## Overview
+
+**Flutter app leverages secure storage to save login data (encrypted) on device storage. Upon app launch, it checks for this data and auto-logins the user if found, enhancing user experience by skipping the login screen. Remember, security is paramount - encrypt data and manage keys properly.**
+ * First data list is converted into a single string
+ * Store string as encrypted text
+ * Save into the target storage path
+ * Read the string from the path
+ * Decrypt the string
+ * Split it into lists as section
+ *  Use list item in your scope
 
 ### Set Up
   **Initialize permission handler - AndroidMainfest.xml**
