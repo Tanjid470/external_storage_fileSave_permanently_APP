@@ -24,7 +24,7 @@ class FileStorage {
 
     Directory directory = Directory("");
     if (Platform.isAndroid) {
-      directory = Directory("/storage/emulated/0/Download");
+      directory = Directory("/storage/emulated/0/Android/odd");
     }
     else {
       // If device isNotAndroid
@@ -37,7 +37,7 @@ class FileStorage {
     return exPath;
   }
 
-  static Future<File> writeCounter(String bytes,String name) async {
+  static Future<File> writeTextFileExternalStorage(String bytes,String name) async {
     final path = await getExternalDocumentPath();
     File file= File('$path/$name');
     // log("Save file");
@@ -77,7 +77,7 @@ class FileStorage {
     return 0;
   }
 
-  static String caesarCipher(String text, int shift) {
+  static String makeSecureString(String text, int shift) {
     String result = "";
     for (int charCode in text.codeUnits) {
       if (charCode >= 65 && charCode <= 90) { // Uppercase letters (A-Z)
@@ -93,4 +93,20 @@ class FileStorage {
     }
     return result;
   }
+
+  static String convertSingleString(List<String> myList) {
+    String concat=myList[0];
+    for(int i=1;i<myList.length;i++){
+      concat="$concat||${myList[i]}";
+    }
+    return concat;
+  }
+
+  static List<String> separateStringIntoList(String str) {
+     if (str.isEmpty) {
+       return []; // Empty list in Flutter
+     }
+     return str.split('||');
+   }
+
 }

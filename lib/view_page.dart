@@ -20,12 +20,11 @@ class _HomePageState extends State<HomePage> {
 
   String current="permanentlySave7.txt";
   String previous="permanentlySave6.txt";
-  List<String> myList =
+  List<String> inputList =
   [
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3NzU2MzE3LCJpYXQiOjE3MTQ3OTYzMTcsImp0aSI6IjQ1ODViZTdjYmViMDQzYThiNGIyZGMxZTljMGI2YzRlIiwidXNlcl9pZCI6NzU0NzF9.Gfajf7kPZa4LyaEMzuIs27YCAQeGsz9qOU5FEFbIqc8",
     "UwDs-pCQk78"
   ];
-
 
 
   @override
@@ -54,15 +53,17 @@ class _HomePageState extends State<HomePage> {
           ),
 
           KButton( onTap: () async{
-            String encryptedText = FileStorage.caesarCipher(myList[1], 3);
+            String concatString=FileStorage.convertSingleString(inputList);
+            String encryptedText = FileStorage.makeSecureString(concatString, 3);
             log('$encryptedText----------Write----------->EncryptedText');
-            FileStorage.writeCounter(encryptedText, current);
+            FileStorage.writeTextFileExternalStorage(encryptedText, current);
           }, buttonType: 'Save Permanently',),
 
           KButton( onTap: () async{
             var readText= await FileStorage.readExternalTextFile(current);
-            String decryptedText = FileStorage.caesarCipher(readText, -3);
-            log('$decryptedText-----------Read---------->DecryptedText');
+            String decryptedText = FileStorage.makeSecureString(readText, -3);
+            List<String> outputList=FileStorage.separateStringIntoList(decryptedText);
+            log('${outputList[0]}-----------Read---------->DecryptedText');
           }, buttonType: 'Read Current',),
 
           KButton( onTap: () async{
@@ -77,6 +78,8 @@ class _HomePageState extends State<HomePage> {
 
     );
   }
+
+
 }
 
 class KButton extends StatelessWidget {
