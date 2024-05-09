@@ -1,4 +1,4 @@
-# Flutter_internal_store
+# Flutter Exnternal Store
 
 ### This project based on how to store file/image in device external folder.
  * Permanently locate so that whenever the app is uninstalled that file will be saved. In Re - install previous save file can read
