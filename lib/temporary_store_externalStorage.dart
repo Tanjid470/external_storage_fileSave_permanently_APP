@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class TemporaryStore extends StatefulWidget {
@@ -44,11 +45,12 @@ class _TemporaryStoreState extends State<TemporaryStore> {
             var status=await Permission.storage.request();
             if(status==PermissionStatus.granted){
               try{
-                /*  <--------Check the location here external store hit-------->
+                //<--------Check the location here external store hit-------->
                 Directory? directory = await getExternalStorageDirectory();
-                log('${directory}--------------');*/
+                log(directory.toString());
                 var read=await File(image).readAsBytes();
-                file=File("/storage/emulated/0/Android/data/com.example.flutter_internal_store/files/image.jpg");
+                file=File('storage/emulated/0/Android/data/com.example.flutter_internal_store/files/image.jpg');
+                log(file.toString());
                 var newFile=await file.create(recursive: true);
                 var write = await newFile.writeAsBytes(read);
                 log(write.toString());
@@ -73,8 +75,12 @@ class _TemporaryStoreState extends State<TemporaryStore> {
                 image="";
               });
               log("Deleted successfully");
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Deleted successfully"),duration: Duration(seconds: 1),));
             }
-
+            else{
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Already Deleted"),duration: Duration(seconds: 1),));
+            }
+            log(image);
           }, child: const Text("Delete")),
         ],
       ),

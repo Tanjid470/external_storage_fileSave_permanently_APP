@@ -12,7 +12,7 @@ class FileStorage {
     PermissionStatus status;
     var deviceSdkVersion= await getDeviceInfo();
 
-    if (Platform.isAndroid &&  deviceSdkVersion > 29) {
+    if (Platform.isAndroid && deviceSdkVersion > 29) {
       status=await Permission.manageExternalStorage.request();
     } else {
      status= await Permission.storage.request();
