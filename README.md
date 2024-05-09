@@ -7,7 +7,13 @@
 ## Overview
 
 **Flutter app leverages secure storage to save login data (encrypted) on device storage. Upon app launch, it checks for this data and auto-logins the user if found, enhancing user experience by skipping the login screen. Remember, security is paramount - encrypt data and manage keys properly.**
-* First data list en
+ * First data list is converted into a single string
+ * Store string as encrypted text
+ * Save into the target storage path
+ * Read the string from the path
+ * Decrypt the string
+ * Split it into lists as section
+ *  Use list item in your scope
 
 ### Set Up
   **Initialize permission handler - AndroidMainfest.xml**
